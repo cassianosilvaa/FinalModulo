@@ -15,25 +15,32 @@
     <body>
         <main>
             <div class="container">
-                <form id="login">
-                    <section>
-                        <h1>
-                            Bem Vindo ao<br />
-                            NoteSoftware!
-                        </h1>
-                        <input type="text" placeholder="E-mail" />
-                        <input
-                            type="password"
-                            placeholder="Senha
-                            "
-                        />
-                        <br />
-                        <button class="btn">Entrar</button>
-                        <p class="paragraph">
-                            Não possui uma conta?
-                            <a href="./createAccount.html">Crie aqui!</a>
-                        </p>
-                    </section>
+                <form id="login" method="post">
+                    <h1>
+                        Bem Vindo ao<br />
+                        NoteSoftware!
+                    </h1>
+                    <label class="text-label" for="iptEmail">Email:</label>
+                    <input
+                        id="iptEmail"
+                        type="email"
+                        name="email"
+                        placeholder="Insira aqui o seu email."
+                        required
+                    />
+                    <label class="text-label" for="iptPassword">Senha: </label>
+                    <input
+                        id="iptPassword"
+                        type="password"
+                        name="password"
+                        placeholder="Insira aqui a sua senha."
+                        required
+                    />
+                    <button class="btn">Entrar</button>
+                    <p class="paragraph">
+                        Não possui uma conta?
+                        <a href="./createAccount.html">Crie aqui!</a>
+                    </p>
                 </form>
             </div>
         </main>

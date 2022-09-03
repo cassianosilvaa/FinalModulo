@@ -15,23 +15,38 @@
     <body>
         <main>
             <div class="container">
-                <form id="login">
-                    <section>
-                        <h1>Crie sua conta grátis!</h1>
-                        <input type="text" placeholder="E-mail" />
-                        <input
-                            type="password"
-                            placeholder="Senha
-                            "
-                        />
-                        <br />
-                        <button class="btn">Registrar</button>
-                        <p class="paragraph">
-                            <a href="./index.html"
-                                >Voltar para a página inicial</a
-                            >
-                        </p>
-                    </section>
+                <form id="login" method="post">
+                    <h1>Crie sua conta grátis!</h1>
+                    <label class="text-label" for="iptEmail">Email:</label>
+                    <input
+                        id="iptEmail"
+                        type="email"
+                        name="email"
+                        placeholder="Insira aqui o seu email."
+                        required
+                    />
+                    <label class="text-label" for="iptPassword">Senha: </label>
+                    <input
+                        id="iptPassword"
+                        type="password"
+                        name="password"
+                        placeholder="Insira aqui a sua senha."
+                        required
+                    />
+                    <label class="text-label" for="iptPassword"
+                        >Confirme sua senha:
+                    </label>
+                    <input
+                        id="iptPassword"
+                        type="password"
+                        name="password"
+                        placeholder="Digite novamente sua senha."
+                        required
+                    />
+                    <button class="btn">Registrar</button>
+                    <p class="paragraph">
+                        <a href="./index.html">Voltar para a página inicial</a>
+                    </p>
                 </form>
             </div>
         </main>
