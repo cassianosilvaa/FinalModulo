@@ -59,8 +59,10 @@ input {
 }
 
 .footer {
-    display: flex;
-    justify-content: center;
+    position: absolute;
+    top: 95%;
+    margin-left: 20px;
+    font-size: 12px;
 }
 .btn {
     background-color: #4d4946;
@@ -83,7 +85,13 @@ input {
 .text-label {
     font-size: 15px;
     color: #4d4946;
-} 
+}
+.register {
+    font-weight: bold;
+}
+span {
+    color: #4d4946;
+}
 
 /* html {
     height: 100%;

@@ -72,8 +72,10 @@ input {
     position: relative;
 }
 .footer {
-    display: flex;
-    justify-content: center;
+    position: absolute;
+    top: 95%;
+    margin-left: 20px;
+    font-size: 12px;
 }
 
 .text-label {

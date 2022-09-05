@@ -9,6 +9,9 @@
 html {
     height: 100%;
 }
+/* body {
+    min-height: 100%;
+} */
 body {
     background-image: url(../assets/images/background/background-img.jpg);
     background-repeat: no-repeat;
@@ -17,9 +20,9 @@ body {
 }
 h1 {
     font-size: 30px;
-    position: relative;
-    top: -35%;
     color: #4d4946;
+    margin: 15px;
+    text-align: center;
 }
 p {
     text-align: center;
@@ -33,57 +36,50 @@ input {
     padding-left: 5px;
     font-size: 10px;
 }
-
-#recados {
-    background-color: rgba(255, 255, 255, 0.65);
-    height: 500px;
-    width: 800px;
+.title-fields {
+    background-color: rgba(255, 255, 255, 0.8);
     display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
+    border: 1px solid black;
     justify-content: center;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 0px 0px 5px 0px;
+    /* border-radius: 10px 0px 10px; */
 }
-.container {
-    min-height: 95vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .footer {
-    display: flex;
-    justify-content: center;
+    position: absolute;
+    top: 95%;
+    margin-left: 20px;
+    font-size: 11px;
+}
+.dsc {
+    width: 300px;
+    height: 30px;
+}
+.detail {
+    width: 550px;
+    height: 30px;
 }
 .btn {
     background-color: #4d4946;
-    border: none;
     color: white;
-    padding: 10px 30px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
-    margin: 20px;
+    height: 30px;
+    width: 60px;
+    border-radius: 4px;
+    margin: 7px;
+    justify-content: center;
 }
-
-.paragraph {
-    position: relative;
-    top: 15%;
+.thead-title {
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    margin: 0px 5px 5px 5px;
+    border-radius: 10px 0px 10px;
+    border: 1px solid black;
+    color: #4d4946;
+    font-size: 15px;
 }
-/* html {
-    height: 100%;
+table {
+    max-width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
 }
-body {
-    min-height: 100%;
-} */
-
-/* html, body {
-    min-height: 100%;
-} */
-
-/* A solução moderna é mais simples
-body { min-height: 100vh; } */
