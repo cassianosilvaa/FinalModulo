@@ -1,0 +1,226 @@
+
+========================================================== JavaScript
+
+const inputText = document.getElementById("iptText");
+const inputDetail = document.getElementById("iptDetail");
+const forms = document.getElementById("forms");
+
+function addNewNote() {
+    let note = {
+        description: null,
+        detail: null,
+    };
+
+    note.description = inputText.value;
+    note.dtl = inputDetail.value;
+
+    //validação para preencher o campo
+    // if (note.description == null || note.detail == " ") {
+    //     alert("Por favor, informe o seu recado");
+
+    //     //focar o input de descrição
+    //     inputText.focus();
+    //     return;
+    // }
+
+    const newLine = createNewLine(note);
+    forms.appendChild(newLine);
+}
+function createNewLine(note) {
+    const notes = document.getElementsByClassName("note-item");
+    const id = notes.length + 1;
+
+    const elementTR = document.createElement("tr");
+    elementTR.classList = ["note-item"];
+    elementTR.id = `note-${id}`;
+
+    //bloco info id
+    const elementTdId = document.createElement9("td");
+    elementTdId.innerText = id;
+    elementTR.appendChild(elementTdId);
+
+    //bloco info dsc
+    const elementTdText = document.createElement("td");
+    elementTdText.innerText = note.description;
+    elementTR.appendChild(elementTdText);
+
+    //bloco info dtl
+    const elementDetail = document.createElement("td");
+    elementDetail.innerText = note.detail;
+    elementTR.appendChild(elementDetail);
+
+    //bloco ações
+    const elementActions = document.createElement("td");
+
+    // //bloco remover linha
+    // const btnRemove = document.createElement("button");
+    // btnRemove.innerText = "Excluir";
+    // btnRemove.onclick = removeLine;
+    // btnRemove.id = `delete-item-${id}`;
+
+    // elementActions.appendChild(btnRemove);
+
+    // elementTR.appendChild(elementActions);
+
+    // return elementTR;
+}
+
+===================================================
+
+
+============================================= CSS
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: system-ui, "Open Sans", "Helvetica Neue", sans-serif;
+}
+html {
+    height: 100%;
+}
+/* body {
+    min-height: 100%;
+} */
+body {
+    background-image: url(../assets/images/background/background-img.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100%;
+}
+h1 {
+    font-size: 30px;
+    color: #4d4946;
+    margin: 15px;
+    text-align: center;
+}
+p {
+    text-align: center;
+}
+input {
+    border-radius: 4px;
+    border: 1px solid #4d4946;
+    width: 180px;
+    height: 20px;
+    margin: 7px;
+    padding-left: 5px;
+    font-size: 10px;
+}
+.title-fields {
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    border: 1px solid black;
+    justify-content: center;
+    margin: 0px 0px 5px 0px;
+    /* border-radius: 10px 0px 10px; */
+}
+.footer {
+    position: absolute;
+    top: 95%;
+    margin-left: 20px;
+    font-size: 11px;
+}
+.dsc {
+    width: 300px;
+    height: 30px;
+}
+.detail {
+    width: 550px;
+    height: 30px;
+}
+.btn {
+    background-color: #4d4946;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    height: 30px;
+    width: 60px;
+    border-radius: 4px;
+    margin: 7px;
+    justify-content: center;
+}
+.thead-title {
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    margin: 0px 5px 5px 5px;
+    border-radius: 10px 0px 10px;
+    border: 1px solid black;
+    color: #4d4946;
+    font-size: 15px;
+}
+table {
+    max-width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+==============================================
+
+======================================= HTML
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="./public/css/note.css" />
+        <link
+            rel="shortcut icon"
+            href="./public/assets/favicon/dev.ico"
+            type="image/x-icon"
+        />
+        <title>NoteSoftware - Meus recados</title>
+    </head>
+    <body>
+        <main>
+            <form id="recados">
+                <fieldset class="title-fields">
+                    <h1>Meus recados!</h1>
+                </fieldset>
+                <fieldset class="title-fields">
+                    <input
+                        id="iptText"
+                        class="dsc"
+                        type="text"
+                        placeholder="Descrição"
+                    />
+                    <input
+                        id="iptDetail"
+                        class="detail"
+                        type="text"
+                        placeholder="Detalhamento"
+                    />
+                    <button class="btn" onclick="addNewNote()">Salvar</button>
+                </fieldset>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Detalhamento</th>
+                        <th scope="col">Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="forms"></tbody>
+            </table>
+        </main>
+        <footer class="footer">
+            Criação e Desenvolvimento:
+            <a href="mailto:silva11.cassiano@gmail.com">Cassiano Silva</a>
+        </footer>
+        <script src="public/js/"></script>
+    </body>
+</html>
+
+
+=================================================================

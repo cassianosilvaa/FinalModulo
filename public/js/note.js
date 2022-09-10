@@ -1,15 +1,23 @@
 const inputText = document.getElementById("iptText");
 const inputDetail = document.getElementById("iptDetail");
 const forms = document.getElementById("forms");
+const saveBtn = document.getElementById("save-btn");
+
+saveBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    addNewNote();
+});
 
 function addNewNote() {
     let note = {
         description: null,
         detail: null,
+        actionEdit: null,
+        actionRemove: null,
     };
 
     note.description = inputText.value;
-    note.dtl = inputDetail.value;
+    note.detail = inputDetail.value;
 
     //validação para preencher o campo
     if (note.description == null || note.detail == " ") {
@@ -32,7 +40,7 @@ function createNewLine(note) {
     elementTR.id = `note-${id}`;
 
     //bloco info id
-    const elementTdId = document.createElement9("td");
+    const elementTdId = document.createElement("td");
     elementTdId.innerText = id;
     elementTR.appendChild(elementTdId);
 
@@ -46,18 +54,23 @@ function createNewLine(note) {
     elementDetail.innerText = note.detail;
     elementTR.appendChild(elementDetail);
 
-    //bloco ações
+    // //bloco ações
     const elementActions = document.createElement("td");
+    elementActions.innerText = note.actionEdit;
+    elementTR.appendChild(elementActions);
 
     //bloco remover linha
     const btnRemove = document.createElement("button");
     btnRemove.innerText = "Excluir";
-    btnRemove.onclick = removeLine;
+    // btnRemove.onclick = removeLine;
     btnRemove.id = `delete-item-${id}`;
-
     elementActions.appendChild(btnRemove);
 
-    elementTR.appendChild(elementActions);
+    //bloco editar linha
+    const btnEdit = document.createElement("button");
+    btnEdit.innerText = "Editar";
+    btnEdit.id = `edit-item-${id}`;
+    elementActions.appendChild(btnEdit);
 
     return elementTR;
 }
