@@ -1,76 +1,82 @@
-const inputText = document.getElementById("iptText");
-const inputDetail = document.getElementById("iptDetail");
-const forms = document.getElementById("forms");
-const saveBtn = document.getElementById("save-btn");
+// const inputText = document.getElementById("iptText");
+// const inputDetail = document.getElementById("iptDetail");
+// const forms = document.getElementById("forms");
+// const saveBtn = document.getElementById("save-btn");
 
-saveBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    addNewNote();
-});
+// saveBtn.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     addNewNote();
+// });
+// function addNewNote() {
+//     let note = JSON.parse(localStorage.getItem("Recados")) || [];
+//     // let note = {
+//     //     description: null,
+//     //     detail: null,
+//     //     actionEdit: null,
+//     //     actionRemove: null,
+//     // };
+//     const newNote = {
+//         description: inputText.value,
+//         detail: inputDetail.value,
+//     };
+//     note.push(newNote);
+//     localStorage.setItem("Recados", JSON.stringify(note));
 
-function addNewNote() {
-    let note = {
-        description: null,
-        detail: null,
-        actionEdit: null,
-        actionRemove: null,
-    };
+//     note.description = inputText.value;
+//     note.detail = inputDetail.value;
 
-    note.description = inputText.value;
-    note.detail = inputDetail.value;
+//     // validação para preencher o campo
+//     if (inputDetail.value == "" || inputText.value == "") {
+//         alert("Por favor, informe o seu recado!");
+//         //focar o input de descrição
+//         inputText.focus();
+//         return;
+//     }
+//     //Limpeza automática dos campos
+//     inputText.value = "";
+//     inputDetail.value = "";
+//     const newLine = createNewLine(note);
+//     forms.appendChild(newLine);
+//     // localStorage.setItem("Recados", JSON.stringify(note));
+// }
+// function createNewLine(note) {
+//     const notes = document.getElementsByClassName("note-item");
+//     const id = notes.length + 1;
 
-    //validação para preencher o campo
-    if (note.description == null || note.detail == " ") {
-        alert("Por favor, informe o seu recado");
+//     const elementTR = document.createElement("tr");
+//     elementTR.classList = ["note-item"];
+//     elementTR.id = `note-${id}`;
 
-        //focar o input de descrição
-        inputText.focus();
-        return;
-    }
+//     //bloco info id
+//     const elementTdId = document.createElement("td");
+//     elementTdId.innerText = id;
+//     elementTR.appendChild(elementTdId);
 
-    const newLine = createNewLine(note);
-    forms.appendChild(newLine);
-}
-function createNewLine(note) {
-    const notes = document.getElementsByClassName("note-item");
-    const id = notes.length + 1;
+//     //bloco info dsc
+//     const elementTdText = document.createElement("td");
+//     elementTdText.innerText = note.description;
+//     elementTR.appendChild(elementTdText);
 
-    const elementTR = document.createElement("tr");
-    elementTR.classList = ["note-item"];
-    elementTR.id = `note-${id}`;
+//     //bloco info dtl
+//     const elementDetail = document.createElement("td");
+//     elementDetail.innerText = note.detail;
+//     elementTR.appendChild(elementDetail);
 
-    //bloco info id
-    const elementTdId = document.createElement("td");
-    elementTdId.innerText = id;
-    elementTR.appendChild(elementTdId);
+//     // //bloco ações
+//     const elementActions = document.createElement("td");
+//     elementTR.appendChild(elementActions);
 
-    //bloco info dsc
-    const elementTdText = document.createElement("td");
-    elementTdText.innerText = note.description;
-    elementTR.appendChild(elementTdText);
+//     //bloco remover linha
+//     const btnRemove = document.createElement("button");
+//     btnRemove.innerText = "Excluir";
+//     // btnRemove.onclick = removeLine;
+//     btnRemove.id = `delete-item-${id}`;
+//     elementActions.appendChild(btnRemove);
 
-    //bloco info dtl
-    const elementDetail = document.createElement("td");
-    elementDetail.innerText = note.detail;
-    elementTR.appendChild(elementDetail);
-
-    // //bloco ações
-    const elementActions = document.createElement("td");
-    elementActions.innerText = note.actionEdit;
-    elementTR.appendChild(elementActions);
-
-    //bloco remover linha
-    const btnRemove = document.createElement("button");
-    btnRemove.innerText = "Excluir";
-    // btnRemove.onclick = removeLine;
-    btnRemove.id = `delete-item-${id}`;
-    elementActions.appendChild(btnRemove);
-
-    //bloco editar linha
-    const btnEdit = document.createElement("button");
-    btnEdit.innerText = "Editar";
-    btnEdit.id = `edit-item-${id}`;
-    elementActions.appendChild(btnEdit);
-
-    return elementTR;
-}
+//     //bloco editar linha
+//     const btnEdit = document.createElement("button");
+//     btnEdit.innerText = "Editar";
+//     btnEdit.id = `edit-item-${id}`;
+//     elementActions.appendChild(btnEdit);
+//     return elementTR;
+// }
