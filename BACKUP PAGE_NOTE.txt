@@ -223,4 +223,114 @@ table {
 </html>
 
 
-=================================================================
+===============================================================================================================
+
+============== ARQUIVOS JS BACKUPS ================
+
+
+////////////////////// LOGAR NO SISTEMA
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    /////////////////////// PEGANDO OS IDS E JOGANDO DENTRO DAS CONTS
+    const iptEmailLogin = document.getElementById("iptEmail").value;
+    const iptPasswordLogin = document.getElementById("iptPassword").value;
+    const session = document.getElementById("checkSession").checked;
+
+    const account = getAccount(iptEmailLogin);
+    ///////////////////// se nao tem conta faz algo
+
+    if (!account) {
+        alert("Email ou senha incorreto!");
+        return;
+    }
+    if (account) {
+        if (account.password !== iptPasswordLogin) {
+            alert("Email ou senha incorreto!");
+            return;
+        }
+        window.location.href = "note.html";
+    }
+});
+
+///////////////////// PEGANDO CONTA
+
+function getAccount(key) {
+    const account = localStorage.getItem(key);
+    ////////////////// se tiver conta vai pegar, senão vai retornar vazio
+    if (account) {
+        return JSON.parse(account);
+    }
+    return "";
+}
+
+
+//////////////////////CRIAR CONTA
+document
+    .getElementById("createAccount")
+    .addEventListener("submit", function (e) {
+        e.preventDefault();
+        /////////////////////// USANDO O PREVENTDEFAULT PARA CANCELAR A AÇÃO PADRAO DO SUBMIT
+
+        /////////////////////// PEGANDO OS IDS E JOGANDO DENTRO DAS CONTS
+        const iptEmail = document.getElementById("ipt-create-email").value;
+        const iptPassword = document.getElementById(
+            "ipt-create-password"
+        ).value;
+        const iptConfirmPassword =
+            document.getElementById("iptConfirmPassword").value;
+
+        /////////////////////// VALIDAÇãO BÁSICA DE EMAIL E SENHA
+        if (iptEmail.length < 5) {
+            alert("O Email precisa ter no mínimo 5 caracteres");
+            return;
+        } else if (iptPassword.length <= 7) {
+            alert("A senha precisa ter no mínimo 8 caracteres");
+            return;
+        } else if (iptPassword !== iptConfirmPassword) {
+            alert("Senhas não correspondem");
+            return;
+        }
+        // const found = .find(element => element > 10);
+        if (localStorage.getItem(iptEmail)) {
+            alert("Email já em uso!");
+            return;
+        } else {
+            saveAccount({
+                login: iptEmail,
+                password: iptPassword,
+                onlyNoteUser: [],
+            });
+            alert("Conta criada com sucesso");
+            alert('Redirecionando para a aba "Login"');
+            location.assign("./index.html");
+        }
+    });
+
+function saveAccount(data) {
+    localStorage.setItem(data.login, JSON.stringify(data));
+}
+
+// } else {
+//     if (iptPassword === iptConfirmPassword) {
+//         console.log(iptEmail, iptPassword, iptConfirmPassword);
+//     } else {
+//         alert("Senhas não correspondem");
+//     }
+
+//         ● assign: redireciona a página para a URL informada como
+// parâmetro;
+// ○ Também pode ser usado um caminho como parâmetro, ao
+// invés de uma URL completa; neste caso, a origem se mantém
+// a mesma e a navegação ocorre dentro do mesmo site.
+
+// ////////////////////// LOGAR NO SISTEMA
+// document.getElementById("loginForm").addEventListener("submit", function (e) {
+//     e.preventDefault();
+//     /////////////////////// PEGANDO OS IDS E JOGANDO DENTRO DAS CONTS
+//     const iptEmailLogin = document.getElementById("iptEmail").value;
+//     const iptPasswordLogin = document.getElementById("iptPassword").value;
+//     const session = document.getElementById("checkSession").checked;
+
+//     console.log(iptEmailLogin, iptPasswordLogin, session);
+// });
+

@@ -15,7 +15,7 @@
     <body>
         <main>
             <div class="container">
-                <form id="login" method="post">
+                <form id="loginForm" method="post">
                     <h1>
                         Bem Vindo ao<br />
                         NoteSoftware!
@@ -28,7 +28,7 @@
                         placeholder="Insira aqui o seu email."
                         required
                     />
-                    <label class="text-label" for="iptPassword">Senha: </label>
+                    <label class="text-label" for="iptPassword">Senha:</label>
                     <input
                         id="iptPassword"
                         type="password"
@@ -36,10 +36,27 @@
                         placeholder="Insira aqui a sua senha."
                         required
                     />
-                    <button class="btn">Entrar</button>
+                    <div id="checkbox">
+                        <input
+                            class="checkInput"
+                            type="checkbox"
+                            name="checkSession"
+                            id="checkSession"
+                        />
+                        <label
+                            class="labelInput"
+                            id="checkSession"
+                            for="checkSession"
+                            >Permanecer logado.</label
+                        >
+                    </div>
+                    <button type="submit" class="btn">Entrar</button>
                     <p class="paragraph">
-                        Não possui uma conta?
-                        <a href="./createAccount.html" class="register"
+                        Ainda não possui uma conta?
+                        <a
+                            href="./createAccount.html"
+                            id="register"
+                            class="register"
                             ><span>Cadastre-se</span></a
                         >
                     </p>
@@ -50,5 +67,6 @@
             Criação e Desenvolvimento:
             <a href="mailto:silva11.cassiano@gmail.com">Cassiano Silva</a>
         </footer>
+        <script src="./public/js/login.js"></script>
     </body>
 </html>

@@ -20,7 +20,7 @@ body {
 h1 {
     font-size: 20px;
     position: relative;
-    top: -10%;
+    top: -5%;
     color: #4d4946;
 }
 p {
@@ -39,7 +39,7 @@ input {
         sans-serif;
 }
 
-#login {
+#loginForm {
     background-color: rgb(255, 255, 255, 0.9);
     height: 400px;
     width: 300px;
@@ -93,6 +93,20 @@ span {
     color: #4d4946;
 }
 
+#checkbox {
+    display: flex;
+}
+
+.labelInput {
+    padding: 0;
+    margin: 8px 0px 0px 5px;
+}
+
+.checkInput {
+    padding: 0;
+    width: 20px;
+    margin: 5px 0px 0px 0px;
+}
 /* html {
     height: 100%;
 }

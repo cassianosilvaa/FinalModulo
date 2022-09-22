@@ -15,35 +15,41 @@
     <body>
         <main>
             <div class="container">
-                <form id="login" method="post">
+                <form id="createAccount" method="post">
                     <h1>Crie sua conta grátis!</h1>
-                    <label class="text-label" for="iptEmail">Email:</label>
+                    <label class="text-label" for="ipt-create-email"
+                        >Email:</label
+                    >
                     <input
-                        id="iptEmail"
+                        id="ipt-create-email"
                         type="email"
                         name="email"
                         placeholder="Exemplo@gmail.com"
                         required
                     />
-                    <label class="text-label" for="iptPassword">Senha: </label>
+                    <label class="text-label" for="ipt-create-password"
+                        >Senha:
+                    </label>
                     <input
-                        id="iptPassword"
+                        id="ipt-create-password"
                         type="password"
                         name="password"
                         placeholder="Insira aqui a sua senha."
                         required
                     />
-                    <label class="text-label" for="iptPassword"
+                    <label class="text-label" for="iptConfirmPassword"
                         >Confirme sua senha:
                     </label>
                     <input
-                        id="iptPassword"
+                        id="iptConfirmPassword"
                         type="password"
                         name="password"
                         placeholder="Digite novamente sua senha."
                         required
                     />
-                    <button class="btn">Registrar</button>
+                    <button type="submit" id="btn-createAccount" class="btn">
+                        Registrar
+                    </button>
                     <p class="paragraph">
                         <a href="./index.html">Voltar para a página inicial</a>
                     </p>
@@ -54,5 +60,6 @@
             Criação e Desenvolvimento:
             <a href="mailto:silva11.cassiano@gmail.com">Cassiano Silva</a>
         </footer>
+        <script src="./public/js/index.js"></script>
     </body>
 </html>
