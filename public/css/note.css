@@ -60,7 +60,7 @@ input {
 }
 .btn {
     background-color: #4d4946;
-    color: white;
+    color: white !important;
     font-size: 15px;
     cursor: pointer;
     height: 35px;
@@ -95,5 +95,4 @@ button {
 
 th {
     width: 50px;
-    
 }

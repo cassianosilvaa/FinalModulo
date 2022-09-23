@@ -1,4 +1,4 @@
-// let logged = sessionStorage.getItem("logged");
+// // let logged = sessionStorage.getItem("logged");
 const checkSession = sessionStorage.getItem("logged");
 const checkSession2 = localStorage.getItem("logged");
 
@@ -12,7 +12,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
     const iptPasswordLogin = document.getElementById("iptPassword").value;
     const session = document.getElementById("checkSession").checked;
     const account = getAccount(iptEmailLogin);
-    
+
     ///////////////////// se nao tem conta faz algo
 
     if (!account) {
@@ -46,10 +46,6 @@ function checkLogged() {
         return;
     }
 
-    // if (logged) {
-    //     saveSession(logged, checkSession);
-    //     window.location.href = "note.html";
-    // }
 }
 
 ///////////////////// PEGANDO CONTA

@@ -1,47 +1,88 @@
-const checkSession = sessionStorage.getItem("logged");
-const checkSession2 = localStorage.getItem("logged");
-
-let userLocal = JSON.parse(localStorage.getItem(checkSession2));
-let userSession = JSON.parse(localStorage.getItem(checkSession));
-
+const formNotes = document.querySelector("#recados");
+const tableNote = document.querySelector("#forms");
 let userData;
 
-if (userLocal) {
-    userData = JSON.parse(localStorage.getItem(checkSession2));
-} else {
-    userData = JSON.parse(localStorage.getItem(checkSession));
-}
+recuperaLocal();
 
-checkLoggedNote();
+formNotes.addEventListener("submit", saveNote);
 
-function checkLoggedNote() {
-    if (!checkSession) {
-        if (!checkSession2) {
-            window.location.href = "index.html";
-        }
+function saveNote(event) {
+    event.preventDefault();
+
+    const d = new Date();
+    let id = d.getTime();
+
+    const iptDsc = formNotes.iptText.value;
+    const iptDetail = formNotes.iptDetail.value;
+
+    if (iptDsc == null || iptDsc == "") {
+        alert("Preencha os campos");
+    } else if (iptDetail == null || iptDetail == "") {
+        alert("Preencha os campos");
+    } else {
+        let objNote = {
+            id: id,
+            description: iptDsc,
+            detail: iptDetail,
+        };
+        userData.onlyNoteUser.push(objNote);
+        saveUser();
+        createTable();
+        alert("Recado salvo com sucesso");
+        event.target.reset();
     }
 }
-createTable();
+
+// RECUPERA TUDO
+function recuperaLocal() {
+    const checkSession = sessionStorage.getItem("logged");
+    const checkSession2 = localStorage.getItem("logged");
+
+    let userLocal = JSON.parse(localStorage.getItem(checkSession2));
+
+    if (userLocal) {
+        userData = JSON.parse(localStorage.getItem(checkSession2));
+    } else {
+        userData = JSON.parse(localStorage.getItem(checkSession));
+    }
+}
 
 function createTable() {
-    console.log(userData.onlyNoteUser);
-    console.log(userData.onlyNoteUser);
-    console.log(userData);
-
-    let newRecado = {
-        dsc: "teste",
-        dtl: "teste2",
-    };
-    let newRecado2 = {
-        dsc: "teseqweqwete",
-        dtl: "testedwqqwdqw2",
-    };
-    let newRecado3 = {
-        dsc: "teseqweqwete",
-        dtl: "testedwqqwweqwqeweqwedqw2",
-    };
-    userData.onlyNoteUser.unshift(newRecado);
-    userData.onlyNoteUser.unshift(newRecado2);
-    userData.onlyNoteUser.unshift(newRecado3);
-    localStorage.setItem("userData.login", JSON.stringify(userData));
+    tableNote.innerHTML = "";
+    for (let note of userData.onlyNoteUser) {
+        tableNote.innerHTML += `
+        <tr>
+            <th scope="row">${note.id}</th>
+            <td>${note.description}</td>
+            <td>${note.detail}</td>
+            <td>
+                <input type="button" class="btn btn-light" value="Excluir" onclick="removerProduto(${userData.onlyNoteUser.id})">
+                <input type="button" class="btn btn-light" value="Editar" onclick="removerProduto(${userData.onlyNoteUser.id})">
+            </td>
+        </tr>
+    `;
+    }
 }
+
+/* <tr>
+    <th scope="row">1</th>
+    <td>Mark</td>
+    <td>Otto</td>
+    <td>@mdo</td>
+       // <td>
+            //     <img type="button" width="40" src="./img/delet.svg" onclick="removerProduto(${userData.onlyNoteUser.id})" />
+            //     <img type="button" width="40" src="./img/delet.svg" onclick="removerProduto(${userData.onlyNoteUser.id})" />
+            // </td>
+</tr>; */
+
+//validação para mandar pro login caso nao estiver com a conta acessada
+checkLoggedNote();
+function checkLoggedNote() {
+    if (!userData) {
+        window.location.href = "index.html";
+    }
+}
+function saveUser() {
+    localStorage.setItem(userData.login, JSON.stringify(userData));
+}
+createTable();
