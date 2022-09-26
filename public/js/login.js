@@ -60,5 +60,5 @@ function getAccount(key) {
 }
 
 // logout
-// function => event click - excluir localStorage com a ket logged e a session com a key
+// function => event click - excluir localStorage com a key logged e a session com a key
 // e window para redirecionar /login

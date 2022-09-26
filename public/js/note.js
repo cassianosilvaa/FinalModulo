@@ -102,16 +102,24 @@ function deleteRowTable(id) {
 }
 
 function editNotesTable(id) {
-    const editNotes = userData.onlyNoteUser.findIndex(
-        (recado) => recado.id === id
-    );
-    userData.onlyNoteUser[editNotes].description = prompt(
-        `Edite a descrição do seu recado: `
-    );
-    userData.onlyNoteUser[editNotes].detail = prompt(
-        `Edite o detalhe do seu recado: `
-    );
-    alert("Recado editado com sucesso!");
-    attLocal(userData);
-    createTable();
+    if (confirm("Deseja realmente editar?") == true) {
+        const editNotes = userData.onlyNoteUser.findIndex(
+            (recado) => recado.id === id
+        );
+        do {
+            dsc = userData.onlyNoteUser[editNotes].description = prompt(
+                `Edite a descrição do seu recado: `
+            );
+        } while (!dsc);
+        do {
+            dtl = userData.onlyNoteUser[editNotes].detail = prompt(
+                `Edite o detalhe do seu recado: `
+            );
+        } while (!dtl);
+        alert("Recado editado com sucesso!");
+        attLocal(userData);
+        createTable();
+    } else {
+        alert("Cancelado");
+    }
 }
