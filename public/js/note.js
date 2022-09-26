@@ -1,5 +1,12 @@
 const formNotes = document.querySelector("#recados");
 const tableNote = document.querySelector("#forms");
+
+const iptEditDsc = document.getElementById("iptEditDsc");
+const iptEditDtl = document.getElementById("iptEditDtl");
+
+const attLocal = (userData) => {
+    localStorage.setItem(userData.login, JSON.stringify(userData));
+};
 let userData;
 
 recuperaLocal();
@@ -49,40 +56,62 @@ function recuperaLocal() {
 
 function createTable() {
     tableNote.innerHTML = "";
+    let idCount = 1;
     for (let note of userData.onlyNoteUser) {
         tableNote.innerHTML += `
         <tr>
-            <th scope="row">${note.id}</th>
+            <th>${idCount}</th>
             <td>${note.description}</td>
             <td>${note.detail}</td>
             <td>
-                <input type="button" class="btn btn-light" value="Excluir" onclick="removerProduto(${userData.onlyNoteUser.id})">
-                <input type="button" class="btn btn-light" value="Editar" onclick="removerProduto(${userData.onlyNoteUser.id})">
+                <input type="button" class="btn btn-outline-dark" value="Excluir" onclick="deleteRowTable(${note.id})">
+                <input type="button" class="btn btn-outline-dark" value="Editar" onclick="editNotesTable(${note.id})">
             </td>
         </tr>
     `;
+        idCount++;
     }
 }
 
-/* <tr>
-    <th scope="row">1</th>
-    <td>Mark</td>
-    <td>Otto</td>
-    <td>@mdo</td>
-       // <td>
-            //     <img type="button" width="40" src="./img/delet.svg" onclick="removerProduto(${userData.onlyNoteUser.id})" />
-            //     <img type="button" width="40" src="./img/delet.svg" onclick="removerProduto(${userData.onlyNoteUser.id})" />
-            // </td>
-</tr>; */
-
 //validação para mandar pro login caso nao estiver com a conta acessada
 checkLoggedNote();
+
 function checkLoggedNote() {
     if (!userData) {
         window.location.href = "index.html";
     }
 }
+
 function saveUser() {
     localStorage.setItem(userData.login, JSON.stringify(userData));
 }
+
 createTable();
+
+function deleteRowTable(id) {
+    if (confirm("Deseja excluir recado?")) {
+        const idNotes = userData.onlyNoteUser.findIndex(
+            (recado) => recado.id === id
+        );
+        if (idNotes < 0) return;
+        userData.onlyNoteUser.splice(idNotes, 1);
+        attLocal(userData);
+        alert("Recado removido com sucesso!");
+        createTable();
+    }
+}
+
+function editNotesTable(id) {
+    const editNotes = userData.onlyNoteUser.findIndex(
+        (recado) => recado.id === id
+    );
+    userData.onlyNoteUser[editNotes].description = prompt(
+        `Edite a descrição do seu recado: `
+    );
+    userData.onlyNoteUser[editNotes].detail = prompt(
+        `Edite o detalhe do seu recado: `
+    );
+    alert("Recado editado com sucesso!");
+    attLocal(userData);
+    createTable();
+}
