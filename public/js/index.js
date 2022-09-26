@@ -1,46 +1,55 @@
-//////////////////////CRIAR CONTA
-document
-    .getElementById("createAccount")
-    .addEventListener("submit", function (e) {
-        e.preventDefault();
-        /////////////////////// USANDO O PREVENTDEFAULT PARA CANCELAR A AÇÃO PADRAO DO SUBMIT
+const checkSession = sessionStorage.getItem("logged");
+const checkSession2 = localStorage.getItem("logged");
 
-        /////////////////////// PEGANDO OS IDS E JOGANDO DENTRO DAS CONTS
+checkLogged();
 
-        const iptEmail = document.getElementById("ipt-create-email").value;
-        const iptPassword = document.getElementById(
-            "ipt-create-password"
-        ).value;
-        const iptConfirmPassword =
-            document.getElementById("iptConfirmPassword").value;
+////////////////////// LOGAR NO SISTEMA
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-        /////////////////////// VALIDAÇãO BÁSICA DE EMAIL E SENHA
-        if (iptEmail.length < 5) {
-            alert("O Email precisa ter no mínimo 5 caracteres");
-            return;
-        } else if (iptPassword.length <= 7) {
-            alert("A senha precisa ter no mínimo 8 caracteres");
-            return;
-        } else if (iptPassword !== iptConfirmPassword) {
-            alert("Senhas não correspondem");
+    /////////////////////// PEGANDO OS IDS E JOGANDO DENTRO DAS CONST
+    const iptEmailLogin = document.getElementById("iptEmail").value;
+    const iptPasswordLogin = document.getElementById("iptPassword").value;
+    const session = document.getElementById("checkSession").checked;
+    const account = getAccount(iptEmailLogin);
+
+    ///////////////////// SE NÃO TEM CONTA FAZ ALGO
+    if (!account) {
+        alert("Email ou senha incorreto!");
+        return;
+    }
+    if (account) {
+        if (account.password !== iptPasswordLogin) {
+            alert("Email ou senha incorreto!");
             return;
         }
-        // const found = .find(element => element > 10);
-        if (localStorage.getItem(iptEmail)) {
-            alert("Email já em uso!");
-            return;
-        } else {
-            let newUser = {
-                login: iptEmail,
-                password: iptPassword,
-                onlyNoteUser: [],
-            };
-            saveAccount(newUser);
-            alert("Conta criada com sucesso");
-            alert('Redirecionando para a aba "Login"');
-            location.assign("./index.html");
-        }
-    });
-function saveAccount(data) {
-    localStorage.setItem(data.login, JSON.stringify(data));
+        //////////////// SALVAR NO SESSIONSTORAGE
+        if (session) localStorage.setItem("logged", iptEmailLogin);
+
+        sessionStorage.setItem("logged", iptEmailLogin); /////////// session >>> checkSession
+        window.location.href = "note.html";
+        console.log(users);
+    }
+});
+/////////// MNATER LOGADO QUEM ESTIVER NA SEÇÃO
+function checkLogged() {
+    if (checkSession) {
+        window.location.href = "note.html";
+    } else if (checkSession2) {
+        window.location.href = "note.html";
+    } else {
+        return;
+    }
 }
+///////////////////// PEGANDO CONTA
+function getAccount(key) {
+    const account = localStorage.getItem(key);
+    ////////////////// se tiver conta vai pegar, senão vai retornar vazio
+    if (account) {
+        return JSON.parse(account);
+    }
+    return "";
+}
+// logout
+// function => event click - excluir localStorage com a key logged e a session com a key
+// e window para redirecionar /login

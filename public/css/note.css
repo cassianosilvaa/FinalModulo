@@ -9,9 +9,7 @@
 html {
     height: 100%;
 }
-/* body {
-    min-height: 100%;
-} */
+
 body {
     background-image: url(../assets/images/background/background-img.jpg);
     background-repeat: no-repeat;
@@ -42,7 +40,6 @@ input {
     border: 1px solid black;
     justify-content: center;
     margin: 0px 0px 5px 0px;
-    /* border-radius: 10px 0px 10px; */
 }
 .footer {
     position: absolute;

@@ -13,6 +13,7 @@ recuperaLocal();
 
 formNotes.addEventListener("submit", saveNote);
 
+//////////////// SALVANDO RECADOS
 function saveNote(event) {
     event.preventDefault();
 
@@ -53,7 +54,7 @@ function recuperaLocal() {
         userData = JSON.parse(localStorage.getItem(checkSession));
     }
 }
-
+/////////////////// CRIANDO A TABLE
 function createTable() {
     tableNote.innerHTML = "";
     let idCount = 1;
@@ -73,7 +74,7 @@ function createTable() {
     }
 }
 
-//validação para mandar pro login caso nao estiver com a conta acessada
+//VALINDO CONTA, SE NÃO ESTIVER LOGADO, RETORNA PARA O 'INDEX'
 checkLoggedNote();
 
 function checkLoggedNote() {
@@ -102,21 +103,35 @@ function deleteRowTable(id) {
 }
 
 function editNotesTable(id) {
-    if (confirm("Deseja realmente editar?") == true) {
+    if (confirm("Deseja editar o campo 'Descrição'?") == true) {
         const editNotes = userData.onlyNoteUser.findIndex(
             (recado) => recado.id === id
         );
+
         do {
             dsc = userData.onlyNoteUser[editNotes].description = prompt(
                 `Edite a descrição do seu recado: `
             );
         } while (!dsc);
+
+        alert("Descrição editada com sucesso!");
+        attLocal(userData);
+        createTable();
+    } else {
+        alert("Cancelado");
+    }
+    if (confirm("Deseja editar o campo 'Detalhamento'?") == true) {
+        const editNotes = userData.onlyNoteUser.findIndex(
+            (recado) => recado.id === id
+        );
+
         do {
             dtl = userData.onlyNoteUser[editNotes].detail = prompt(
                 `Edite o detalhe do seu recado: `
             );
         } while (!dtl);
-        alert("Recado editado com sucesso!");
+
+        alert("Detalhe editado com sucesso!");
         attLocal(userData);
         createTable();
     } else {
