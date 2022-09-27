@@ -24,9 +24,9 @@ function saveNote(event) {
     const iptDetail = formNotes.iptDetail.value;
 
     if (iptDsc == null || iptDsc == "") {
-        alert("Preencha os campos");
+        alert("Preencha os campos!");
     } else if (iptDetail == null || iptDetail == "") {
-        alert("Preencha os campos");
+        alert("Preencha os campos!");
     } else {
         let objNote = {
             id: id,
@@ -36,7 +36,7 @@ function saveNote(event) {
         userData.onlyNoteUser.push(objNote);
         saveUser();
         createTable();
-        alert("Recado salvo com sucesso");
+        alert("Recado salvo com sucesso!");
         event.target.reset();
     }
 }
