@@ -102,3 +102,16 @@ tr {
     text-align: center;
     vertical-align: middle;
 }
+.material-symbols-outlined {
+    position: absolute;
+    top: 23px;
+    right: 27px;
+    cursor: pointer;
+}
+.logout-paragraph {
+    color: #4d4946;
+    position: absolute;
+    top: 25px;
+    right: 60px;
+    font-weight: 700;
+}

@@ -3,17 +3,14 @@ const checkSession2 = localStorage.getItem("logged");
 
 checkLogged();
 
-////////////////////// LOGAR NO SISTEMA
 document.getElementById("loginForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
-    /////////////////////// PEGANDO OS IDS E JOGANDO DENTRO DAS CONST
     const iptEmailLogin = document.getElementById("iptEmail").value;
     const iptPasswordLogin = document.getElementById("iptPassword").value;
     const session = document.getElementById("checkSession").checked;
     const account = getAccount(iptEmailLogin);
 
-    ///////////////////// SE NÃO TEM CONTA FAZ ALGO
     if (!account) {
         alert("Email ou senha incorreto!");
         return;
@@ -23,15 +20,12 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
             alert("Email ou senha incorreto!");
             return;
         }
-        //////////////// SALVAR NO SESSIONSTORAGE
         if (session) localStorage.setItem("logged", iptEmailLogin);
 
-        sessionStorage.setItem("logged", iptEmailLogin); /////////// session >>> checkSession
+        sessionStorage.setItem("logged", iptEmailLogin);
         window.location.href = "note.html";
-        console.log(users);
     }
 });
-/////////// MNATER LOGADO QUEM ESTIVER NA SEÇÃO
 function checkLogged() {
     if (checkSession) {
         window.location.href = "note.html";
@@ -41,7 +35,6 @@ function checkLogged() {
         return;
     }
 }
-///////////////////// PEGANDO CONTA
 function getAccount(key) {
     const account = localStorage.getItem(key);
     ////////////////// se tiver conta vai pegar, senão vai retornar vazio
@@ -50,6 +43,3 @@ function getAccount(key) {
     }
     return "";
 }
-// logout
-// function => event click - excluir localStorage com a key logged e a session com a key
-// e window para redirecionar /login

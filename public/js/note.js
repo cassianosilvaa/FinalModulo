@@ -3,17 +3,18 @@ const tableNote = document.querySelector("#forms");
 
 const iptEditDsc = document.getElementById("iptEditDsc");
 const iptEditDtl = document.getElementById("iptEditDtl");
+const btnLogout = document.getElementById("btnLog");
 
 const attLocal = (userData) => {
     localStorage.setItem(userData.login, JSON.stringify(userData));
 };
-let userData;
 
+let userData;
 recuperaLocal();
 
 formNotes.addEventListener("submit", saveNote);
+btnLogout.addEventListener("click", logout);
 
-//////////////// SALVANDO RECADOS
 function saveNote(event) {
     event.preventDefault();
 
@@ -41,7 +42,6 @@ function saveNote(event) {
     }
 }
 
-// RECUPERA TUDO
 function recuperaLocal() {
     const checkSession = sessionStorage.getItem("logged");
     const checkSession2 = localStorage.getItem("logged");
@@ -54,7 +54,6 @@ function recuperaLocal() {
         userData = JSON.parse(localStorage.getItem(checkSession));
     }
 }
-/////////////////// CRIANDO A TABLE
 function createTable() {
     tableNote.innerHTML = "";
     let idCount = 1;
@@ -74,7 +73,6 @@ function createTable() {
     }
 }
 
-//VALINDO CONTA, SE NÃO ESTIVER LOGADO, RETORNA PARA O 'INDEX'
 checkLoggedNote();
 
 function checkLoggedNote() {
@@ -120,6 +118,7 @@ function editNotesTable(id) {
     } else {
         alert("Cancelado");
     }
+
     if (confirm("Deseja editar o campo 'Detalhamento'?") == true) {
         const editNotes = userData.onlyNoteUser.findIndex(
             (recado) => recado.id === id
@@ -136,5 +135,15 @@ function editNotesTable(id) {
         createTable();
     } else {
         alert("Cancelado");
+    }
+}
+
+function logout() {
+    const checkSession2 = localStorage.getItem("logged");
+    const checkSession = sessionStorage.getItem("logged");
+    if (checkSession2 || checkSession) {
+        localStorage.removeItem("logged");
+        sessionStorage.removeItem("logged");
+        window.location.href = "index.html";
     }
 }

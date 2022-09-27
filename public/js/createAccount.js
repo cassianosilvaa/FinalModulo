@@ -1,11 +1,13 @@
-//////////////////////CRIAR CONTA
+const checkSession = sessionStorage.getItem("logged");
+const checkSession2 = localStorage.getItem("logged");
+
+checkLogged();
+
 document
     .getElementById("createAccount")
     .addEventListener("submit", function (e) {
         e.preventDefault();
-        /////////////////////// USANDO O PREVENTDEFAULT PARA CANCELAR A AÇÃO PADRAO DO SUBMIT
 
-        /////////////////////// PEGANDO OS IDS E JOGANDO DENTRO DAS CONST
         const iptEmail = document.getElementById("ipt-create-email").value;
         const iptPassword = document.getElementById(
             "ipt-create-password"
@@ -13,7 +15,6 @@ document
         const iptConfirmPassword =
             document.getElementById("iptConfirmPassword").value;
 
-        /////////////////////// VALIDAÇãO BÁSICA DE EMAIL E SENHA
         if (iptEmail.length < 5) {
             alert("O Email precisa ter no mínimo 5 caracteres");
             return;
@@ -24,7 +25,7 @@ document
             alert("Senhas não correspondem");
             return;
         }
-        ///////////////////// VERIFICANDO SE O EMAIL JÁ ESTÁ SENDO USADO
+
         if (localStorage.getItem(iptEmail)) {
             alert("Email já em uso!");
             return;
@@ -37,9 +38,20 @@ document
             saveAccount(newUser);
             alert("Conta criada com sucesso!");
             alert('Redirecionando para a aba "Login"!');
-            location.assign("./index.html");
+            location.assign("index.html");
         }
     });
+
 function saveAccount(data) {
     localStorage.setItem(data.login, JSON.stringify(data));
+}
+
+function checkLogged() {
+    if (checkSession) {
+        window.location.href = "note.html";
+    } else if (checkSession2) {
+        window.location.href = "note.html";
+    } else {
+        return;
+    }
 }
